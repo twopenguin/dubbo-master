@@ -19,6 +19,8 @@ package org.apache.dubbo.remoting;
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.Version;
 import org.apache.dubbo.common.extension.ExtensionLoader;
+import org.apache.dubbo.common.logger.Logger;
+import org.apache.dubbo.common.logger.LoggerFactory;
 import org.apache.dubbo.remoting.transport.ChannelHandlerAdapter;
 import org.apache.dubbo.remoting.transport.ChannelHandlerDispatcher;
 
@@ -27,6 +29,8 @@ import org.apache.dubbo.remoting.transport.ChannelHandlerDispatcher;
  */
 public class Transporters {
 
+    private static final Logger logger = LoggerFactory.getLogger(Transporters.class);
+    
     static {
         // check duplicate jar package
         Version.checkDuplicate(Transporters.class);
@@ -53,6 +57,7 @@ public class Transporters {
         } else {
             handler = new ChannelHandlerDispatcher(handlers);
         }
+        logger.info("开始绑定，url:" + url);
         return getTransporter().bind(url, handler);
     }
 

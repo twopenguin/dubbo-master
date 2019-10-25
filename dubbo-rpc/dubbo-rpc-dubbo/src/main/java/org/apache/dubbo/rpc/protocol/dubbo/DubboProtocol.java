@@ -304,6 +304,7 @@ public class DubboProtocol extends AbstractProtocol {
         }
 
         openServer(url);
+        //初始化序列化优化器
         optimizeSerialization(url);
 
         return exporter;

@@ -49,7 +49,16 @@ public class ProtocolFilterWrapper implements Protocol {
     }
 
 
-
+    /**
+     * Provider Class 被包装过程
+     * ref->代理Invoker->buildInvokerChain Invoker
+     * 此方法就是 buildInvokerChain Invoker 这一步 
+     * @param invoker 代理 ref 的 Invoker
+     * @param key
+     * @param group
+     * @param <T>
+     * @return  包装之后的 Invoker CallbackRegistrationInvoker
+     */
     private static <T> Invoker<T> buildInvokerChain(final Invoker<T> invoker, String key, String group) {
         Invoker<T> last = invoker;
         List<Filter> filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
