@@ -178,7 +178,9 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
     }
 
     protected void connect() throws RemotingException {
-
+        if (logger.isInfoEnabled()) {
+            logger.info("开始连接。。。。");
+        }
         connectLock.lock();
 
         try {
